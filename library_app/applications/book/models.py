@@ -1,5 +1,5 @@
 from django.db import models
-from .managers import AuthorManager
+from .managers import AuthorManager, BookManager
 
 
 class Author(models.Model):
@@ -34,6 +34,8 @@ class Book(models.Model):
     editorial = models.ForeignKey(Editorial, on_delete=models.CASCADE, related_name='books')
     release = models.DateField('Publicación', blank=True, null=True)
     cover = models.ImageField('Portada', upload_to='book_stock', blank=True, null=True)  # Have to install Pillow
+
+    objects = BookManager()
 
     class Meta:
         verbose_name = 'Libro'
